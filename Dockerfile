@@ -7,7 +7,7 @@ WORKDIR /tmp
 
 RUN apt-get update \
 	&& export DEBIAN_FRONTEND="noninteractive" \
-	&& apt-get -y install nginx php-fpm supervisor inotify-tools apt-utils
+	&& apt-get -y install nginx php-fpm supervisor inotify-tools apt-utils php-mysql
 	
 ADD conf/supervisord_nginx.conf /etc/supervisor/conf.d/nginx.conf
 ADD conf/supervisord_php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
