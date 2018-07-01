@@ -18,6 +18,7 @@ RUN mkdir -p /var/run/php \
 	&& sed -i "s|CONFIG_LOCATION|"$(find /etc/php -name www.conf)"|g" /etc/supervisor/conf.d/php-fpm.conf \
 	&& sed -i '/#location/,/}/d' /etc/nginx/sites-enabled/default \
 	&& sed -i 's/# pass PHP scripts to FastCGI server/# pass PHP scripts to FastCGI server\r\n        location ~ \\.php$ {\r\n                include snippets\/fastcgi-php.conf;\r\n                fastcgi_pass unix:\/var\/run\/php\/php7.0-fpm.sock;\r\n        }/g' /etc/nginx/sites-enabled/default \
+	&& sed -i 's/index.nginx-debian.html/index.php index.nginx-debian.html/g' /etc/nginx/sites-enabled/default \
 	&& apt-get -y autoremove \
 	&& apt-get clean autoclean \
 	&& rm -rf /var/lib/{log,dpkg,apt,cache}
